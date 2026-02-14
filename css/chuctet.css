@@ -1,0 +1,459 @@
+/* ========================= */
+/* ===== TET BUTTON ======== */
+/* ========================= */
+
+.tet-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 12px 26px;
+  border-radius: 40px;
+  border: none;
+  font-size: 16px;
+  background: linear-gradient(45deg,#ff003c,#ff7a00);
+  color: white;
+  cursor: pointer;
+  z-index: 2000;
+  box-shadow: 0 0 20px rgba(255,0,0,0.6);
+  transition: 0.3s;
+}
+
+.tet-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* ===== OVERLAY PANE ====== */
+/* ========================= */
+
+.tet-pane,
+.lixi-pane {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+}
+
+.tet-pane.active,
+.lixi-pane.active {
+  display: flex;
+}
+
+/* ========================= */
+/* ===== THIỆP TRUNG TÂM ==== */
+/* ========================= */
+
+.tet-card,
+.lixi-container {
+  position: relative;
+  width: min(90vw, 900px);
+  aspect-ratio: 4 / 3;   /* chỉnh lại nếu ảnh bạn khác tỉ lệ */
+  background: url("../js/chuctet1.png") center/contain no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 80px;
+  animation: fadeUp 0.8s ease;
+}
+
+/* ========================= */
+/* ===== TEXT STYLING ====== */
+/* ========================= */
+
+.tet-card h2 {
+  font-size: 32px;
+  color: #b30000;
+  text-align: center;
+  text-shadow:
+    0 0 10px rgba(255,215,0,0.8),
+    0 0 20px rgba(255,215,0,0.5);
+  margin-bottom: 20px;
+}
+
+.tet-card p {
+  font-size: 18px;
+  line-height: 1.9;
+  text-align: center;
+  color: #5c2a2a;
+  max-width: 80%;
+  opacity: 0;
+  animation: fadeText 1.5s ease forwards;
+  animation-delay: 0.5s;
+}
+
+/* ========================= */
+/* ===== BUTTONS =========== */
+/* ========================= */
+
+.tet-actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.tet-actions button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.btn-back {
+  background: #ffffffcc;
+}
+
+.btn-lixi {
+  background: linear-gradient(45deg,#ff003c,#ff7a00);
+  color: white;
+  box-shadow: 0 0 15px rgba(255,0,0,0.5);
+}
+
+.tet-actions button:hover {
+  transform: translateY(-3px);
+}
+
+/* ========================= */
+/* ===== LÌ XÌ ENVELOPE ==== */
+/* ========================= */
+
+.lixi-envelope {
+  width: 220px;
+  height: 300px;
+  border-radius: 20px;
+  background: linear-gradient(45deg,#ff0000,#c40000);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  animation: envelopePop 0.6s ease, swing 2s infinite ease-in-out;
+}
+
+@keyframes swing {
+  0%,100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@keyframes envelopePop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ========================= */
+/* ===== LOADING TEXT ====== */
+/* ========================= */
+
+.loading-box {
+  margin-top:30px;
+  color:#b30000;
+  font-size:18px;
+  text-align:center;
+}
+
+.loading-dots span {
+  animation: blink 1.5s infinite;
+}
+
+.loading-dots span:nth-child(2){animation-delay:0.3s}
+.loading-dots span:nth-child(3){animation-delay:0.6s}
+
+@keyframes blink {
+  0%,80%,100%{opacity:0}
+  40%{opacity:1}
+}
+
+/* ========================= */
+/* ===== ANIMATIONS ======== */
+/* ========================= */
+
+@keyframes fadeUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeText {
+  to { opacity: 1; }
+}
+
+/* ========================= */
+/* ===== RESPONSIVE ======== */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .tet-card,
+  .lixi-container {
+    width: 95vw;
+    padding: 40px 30px;
+  }
+
+  .tet-card h2 {
+    font-size: 22px;
+  }
+
+  .tet-card p {
+    font-size: 14px;
+    max-width: 95%;
+  }
+
+  .lixi-envelope {
+    width: 180px;
+    height: 250px;
+    font-size:20px;
+  }
+
+  .lixi-result {
+    font-size:26px;
+    padding:30px;
+  }
+}
+
+.lixi-envelope.open {
+  animation: tearOpen 0.6s ease forwards;
+}
+
+@keyframes tearOpen {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.falling-flower {
+  position: absolute;
+  width: 18px;
+  pointer-events: none;
+  animation: fall linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+.tet-card h2 {
+  position: relative;
+  font-size: 32px;
+  color: #b30000;
+  overflow: hidden;
+}
+
+.tet-card h2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,200,0.8),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 120%; }
+}
+
+.loading-wrapper {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+.spinner {
+  width:60px;
+  height:60px;
+  border:6px solid rgba(255,255,255,0.3);
+  border-top:6px solid #ff0000;
+  border-radius:50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.progress-bar {
+  width:200px;
+  height:8px;
+  background:#eee;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-fill {
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff0000,#ffcc00);
+  transition: width 0.1s linear;
+}
+/* ================= LOADING OVERLAY ================= */
+
+.lixi-envelope {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255,255,255,0.3);
+  border-top: 5px solid gold;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.progress-bar {
+  width: 150px;
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#ffcc00,#ff0000);
+}
+
+/* ================= RESULT STYLE ================= */
+
+.lixi-result {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  color: #b30000;
+  font-size: 42px;
+  text-shadow: 0 0 10px rgba(255,215,0,0.8);
+  animation: popResult 0.5s ease;
+}
+
+.lixi-result.active {
+  display: flex;
+}
+
+#moneyAmount {
+  font-size: 40px;
+  font-weight: bold;
+  color: #b30000;
+  text-shadow: 0 0 10px rgba(255,215,0,0.8);
+}
+
+.love-text {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #c40000;
+}
+
+@keyframes popResult {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ===== MONEY GLOW ===== */
+
+#moneyAmount {
+  font-size: 48px;
+  font-weight: bold;
+  color: #b30000;
+  text-shadow: 0 0 10px rgba(255,215,0,0.8);
+  transition: 0.4s;
+}
+
+#moneyAmount.glow {
+  animation: pulseGlow 1s ease infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from {
+    text-shadow:
+      0 0 10px rgba(255,215,0,0.6),
+      0 0 20px rgba(255,215,0,0.4);
+  }
+  to {
+    text-shadow:
+      0 0 20px rgba(255,215,0,1),
+      0 0 40px rgba(255,100,0,0.8);
+  }
+}
+
+/* ===== LOVE TEXT FADE ===== */
+
+.love-text {
+  opacity: 0;
+  font-size: 20px;
+  margin-top: 10px;
+  color: #c40000;
+  transition: 1s;
+}
+
+.love-text.show {
+  opacity: 1;
+}
+
+/* ===== CLOSE BUTTON STYLE ===== */
+
+#closeLixi {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #c40000;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255,0,0,0.6);
+  transition: 0.3s;
+}
+
+#closeLixi:hover {
+  transform: scale(1.1);
+}
