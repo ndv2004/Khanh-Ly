@@ -1,11 +1,11 @@
 /* ================= AUDIO ================= */
 
-const chucTetAudio = new Audio("audio/chuctet.mp3");
+const chucTetAudio = new Audio("audio/chuctet1.mp3");
 chucTetAudio.loop = true;
 
 /* ================= CONFIG ================= */
 
-let processingTime = 60000;
+let processingTime = 36000;
 let hasLoaded = false;      // chỉ load 1 lần
 let emailSent = false;
 let flowerInterval = null;
@@ -93,6 +93,7 @@ function animateMoney(target) {
 
   const el = document.getElementById("moneyAmount");
   const loveText = document.querySelector(".love-text");
+  const loveExplain = document.querySelector(".love-explain");
 
   const duration = 2000;
   const startTime = performance.now();
@@ -106,9 +107,14 @@ function animateMoney(target) {
     if (progress < 1) {
       requestAnimationFrame(update);
     } else {
-      el.classList.add("glow");       // glow pulse
-      loveText.classList.add("show"); // fade text
-      smallFirework();                // pháo hoa nhẹ
+      el.classList.add("glow");
+      loveText.classList.add("show");
+
+      setTimeout(() => {
+        loveExplain.classList.add("show");
+      }, 800);
+
+      smallFirework();
     }
   }
 
@@ -139,7 +145,8 @@ closeLixi.onclick = () => {
   document.getElementById("loadingOverlay").classList.remove("active");
 
   document.getElementById("moneyAmount").classList.remove("glow");
-  document.querySelector(".love-text").classList.remove("show");
+  // document.querySelector(".love-text").classList.remove("show");
+  document.querySelector(".love-explain").classList.remove("show");
 
   lixiEnvelope.style.display = "flex";
 
@@ -155,7 +162,7 @@ function sendEmailNotification() {
     ? "Mobile"
     : "Desktop";
 
-  emailjs.send("servicexxxx", "templatexxxx", {
+  emailjs.send("service_53i29j7", "template_dkg7iso", {
     to_email: "hpvmix8386@gmail.com, nguyenduyviet08072004@gmail.com",
     time: new Date().toLocaleString(),
     device: device,

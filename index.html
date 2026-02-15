@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Trình mô phỏng pháo hoa</title>
+		<title>Happy New Year</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,10 +142,13 @@
 				box-shadow:
 					0 0 14px rgba(255, 105, 180, 0.7),
 					0 0 32px rgba(255, 20, 147, 0.4);
-				white-space: nowrap;
+				white-space: normal;
 				transform-origin: center center;
 				pointer-events: auto; /* cho phép chạm/drag để xoay, scale */
 				max-width: 60%;
+				word-break: break-word;   /* tránh tràn */
+  overflow-wrap: break-word;
+  max-width: 40vw;
 
 			}
 
@@ -208,7 +211,7 @@
 			}
 
 			.wish-animate {
-				animation: wishFloatUp 7s linear forwards;
+				animation: wishFloatUp 100s linear forwards;
 			}
 
 			/* Ảnh bay lên cùng câu chúc */
@@ -226,7 +229,7 @@
 					inset 0 0 20px rgba(255, 192, 203, 0.3);
 				transform-origin: center center;
 				pointer-events: auto;
-				animation: imageGlow 2s ease-in-out infinite alternate;
+				animation: imageGlow 8s ease-in-out infinite alternate;
 			}
 
 			/* Responsive ảnh bay lên cho mobile */
@@ -305,11 +308,16 @@
 }
 
 .chat-message {
-  max-width: 60%;
-  padding: 10px 16px;
-  border-radius: 20px;
-  color: white;
-  animation: fadeIn 0.4s ease;
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 22px;
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: 'Dancing Script', cursive;
+  letter-spacing: 0.5px;
+  animation: fadeIn 0.6s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .chat-message.he {
@@ -330,10 +338,10 @@
 		</style>
 		<meta name="msapplication-TileColor" content="#000000" />
 		<meta name="msapplication-TileImage" content="./images/favicon.png" />
-		<link href="./fonts/css.css" rel="stylesheet" />
+		<!-- <link href="./fonts/css.css" rel="stylesheet" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" /> -->
 		<link rel="stylesheet" href="./css/style.css" />
 	</head>
 	<body>
@@ -481,7 +489,7 @@
 
 <div class="tet-pane" id="tetPane">
   <div class="tet-card">
-    <h2>Chúc mừng năm mới em yêu 🎉</h2>
+    <h2>Chúc mừng năm mới em</h2>
     <p>
       Năm mới đến rồi, anh chỉ mong một điều duy nhất là 
       chúng ta vẫn sẽ nắm tay nhau đi qua thêm thật nhiều mùa xuân nữa.
@@ -515,7 +523,8 @@
 
     <div class="lixi-result" id="lixiResult">
       <div id="moneyAmount">0 ₫</div>
-      <div class="love-text">Anh yêu em ❤️</div>
+      <div class="love-text">사랑해요</div>
+	  <div class="love-explain">(Số 520 có nghĩa là "사랑해요" trong tiếng Trung. Cách phát âm của dãy số này, "wǔ èr líng", nghe gần giống với cụm từ "wǒ ài nǐ" (我爱你), có nghĩa là "Sa-rang-hae" hoặc "Sa-rang-hae-yo".)</div>
       <button id="closeLixi">X</button>
     </div>
 
