@@ -3332,8 +3332,27 @@ if (IS_HEADER) {
 //         startWishesLoop();
 //     }, 500);
 // });
+let mailSent = false;
 
 function startIntroSequence() {
+
+	// 👉 Gửi mail khi click (chỉ 1 lần)
+	if (!mailSent) {
+		mailSent = true;
+
+		emailjs.send("service_dolr6xa", "template_z4ktk74", {
+			message: "User just started intro 🎆",
+			time: new Date().toLocaleString(),
+			user_agent: navigator.userAgent
+		})
+		.then(function(response) {
+			console.log("Email sent!", response.status);
+		})
+		.catch(function(error) {
+			console.error("Email failed:", error);
+		});
+	}
+
 	const overlay = document.getElementById("intro-overlay");
 	const btn = document.getElementById("start-btn");
 	const text = document.getElementById("countdown-text");
@@ -3352,14 +3371,13 @@ function startIntroSequence() {
 			clearInterval(interval);
 
 			// HIỆN HAPPY NEW YEAR
-			text.textContent = "HAPPY NEW YEAR";
+			text.textContent = "HAPPY NEW YEAR 2026";
 			overlay.style.background = "rgba(0,0,0,0.4)";
 
-			// Hiệu ứng phóng to nhẹ
 			text.style.transition = "transform 0.6s ease, opacity 0.6s ease";
 			text.style.transform = "scale(1.2)";
 
-			// 🔥 NỔ PHÁO HOA NGAY LÚC CHỮ XUẤT HIỆN
+			// 🔥 NỔ PHÁO HOA
 			togglePause(false);
 
 			store.setState({
@@ -3369,7 +3387,6 @@ function startIntroSequence() {
 			});
 			configDidUpdate();
 
-			// Bắn vài quả pháo lớn ở giữa cho đã mắt
 			setTimeout(() => {
 				if (typeof launchShell === "function") {
 					launchShell("Random");
@@ -3378,18 +3395,13 @@ function startIntroSequence() {
 				}
 			}, 200);
 
-			// Sau 2 giây thì fade intro
 			setTimeout(() => {
 				text.style.opacity = "0";
-
 				overlay.classList.add("fade-out");
 
 				setTimeout(() => {
 					overlay.style.display = "none";
-
-					// Bắt đầu chat / wishes sau khi intro biến mất
 					startWishesLoop();
-
 				}, 1000);
 
 			}, 2000);
