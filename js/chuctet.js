@@ -5,7 +5,7 @@ chucTetAudio.loop = true;
 
 /* ================= CONFIG ================= */
 
-let processingTime = 36000;
+let processingTime = 2000;
 let hasLoaded = false;      // chỉ load 1 lần
 let emailSent = false;
 let flowerInterval = null;
